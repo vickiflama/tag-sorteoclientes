@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADN · Tarjeta de Ganador</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Anton&family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+  <!-- Variante 1  -->
+  <div class="adn-card" id="card1">
+    <div class="confetti-field" id="field1"></div>
+    <div class="adn-card__content">
+      <img src="media/logoADN.png" class="logoADN">
+
+      <div class="linea">
+        <p class="linea__script">Felicidades</p>
+        <p class="linea__poster">¡GANASTE!</p>
+      </div>
+
+      <p class="ganador">Castets y Tanino</p>
+      <p class="ganador-label">Ganaste:</p>
+
+      <div class="ticket">
+        <div class="ordendecompra"><span>ORDEN DE <br> COMPRA</span></div>
+        <div class="ticket_divisor"></div>
+        <div class="ticket_cantidad">
+          <div class="ticket__brillo"></div>
+          <span class="monto">$100.000</span>
+          <span class="cantidad-tag">en tu próxima compra</span>
+        </div>
+      </div>
+
+      <p class="date">29/07/2026</p>
+    </div>
+  </div>
+
+  <!-- Variante 2  -->
+  <div class="adn-card" id="card2">
+    <div class="confetti-field" id="field2"></div>
+    <div class="adn-card__content">
+      <img src="media/logoADN.png" class="logoADN">
+      <div class="linea">
+        <p class="linea__script">Felicidades</p>
+        <p class="linea__poster">¡GANASTE!</p>
+      </div>
+
+      <p class="ganador">Castets y Tanino</p>
+      <p class="ganador-label">Ganaste:</p>
+
+      <div style="margin-top:6px;">
+        <div class="tag">
+          <div class="class-tag">
+            <span class="tag-valor">20 </span>
+            <div class="tag__off">
+              <span class="porcentaje">%</span>
+              <span class="OFF">OFF</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="tag-off">EN TU PRÓXIMA COMPRA</p>
+
+      <p class="date">29/07/2026</p>
+    </div>
+  </div>
+
+  <script src="javascript.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,369 @@
+
+    :root{
+    --void:#08070a;
+    --charcoal:#17141a;
+    --gold-bright:#e8c46a;
+    --gold-mid:#c79a3e;
+    --gold-deep:#7a5a19;
+    --adn-red:#e2231b;
+    --paper:#f6f1e4;
+    --ink:#1c1712;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    min-height:100vh;
+    background:#000;
+    display:flex;
+    flex-wrap:wrap;
+    align-items:flex-start;
+    justify-content:center;
+    gap:48px;
+    padding:56px 24px;
+    font-family:'Poppins', sans-serif;
+  }
+
+  .lab-label{
+    width:100%;
+    text-align:center;
+    color:#6b6b6b;
+    font-size:12px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    margin:0 0 -28px;
+  }
+
+  /* ============================== CARD ============================== */
+
+  .adn-card{
+    position:relative;
+    width:400px;
+    aspect-ratio:9/16;
+    border-radius:22px;
+    overflow:hidden;
+    background:
+      radial-gradient(120% 70% at 50% 8%, var(--charcoal) 0%, var(--void) 55%, #000 100%);
+    box-shadow:
+      0 30px 60px -20px rgba(0,0,0,.7),
+      0 0 0 1px rgba(255,255,255,.05);
+    isolation:isolate;
+  }
+
+  /* fina viñeta y grano de fondo para que el negro no quede plano */
+  .adn-card::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/></svg>");
+    mix-blend-mode:overlay;
+    pointer-events:none;
+    z-index:1;
+  }
+
+  .adn-card::after{
+    content:"";
+    position:absolute; inset:0;
+    box-shadow: inset 0 0 90px 10px rgba(0,0,0,.65);
+    pointer-events:none;
+    z-index:2;
+  }
+
+  /* ============================== CONFETTI ============================== */
+
+  .confetti-field{
+    position:absolute; inset:0;
+    z-index:1;
+    pointer-events:none;
+  }
+
+  .confetti{
+    position:absolute;
+    top:-8%;
+    opacity:0;
+    animation:fall linear infinite, spin linear infinite;
+    animation-delay: var(--d), var(--d);
+  }
+
+  .confetti.dot{
+    width:7px; height:7px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--gold-bright), var(--gold-mid) 70%);
+  }
+  .confetti.bar{
+    width:14px; height:4px; border-radius:2px;
+    background:linear-gradient(90deg, var(--gold-mid), var(--gold-bright));
+  }
+  .confetti.ribbon{
+    width:5px; height:22px; border-radius:3px;
+    background:linear-gradient(180deg, var(--adn-red), #a4140d);
+  }
+
+  @keyframes fall{
+    0%   { transform:translateY(0); opacity:0; }
+    8%   { opacity:1; }
+    92%  { opacity:1; }
+    100% { transform:translateY(112vh); opacity:0; }
+  }
+  @keyframes spin{
+    from{ rotate:0deg; }
+    to{ rotate:360deg; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .confetti{ animation:none; opacity:.6; }
+    .ticket__sheen{ display:none; }
+  }
+
+  /* ============================== CONTENT ============================== */
+
+  .adn-card__content{
+    position:relative;
+    z-index:3;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:34px 26px 26px;
+  }
+
+  .logoADN{
+    width:150px;
+    height:auto;
+    margin-bottom:38px;
+    filter:drop-shadow(0 4px 10px rgba(0,0,0,.5));
+  }
+
+  .linea{
+    text-align:center;
+  }
+
+  .linea__script{
+    font-family:'Alex Brush', cursive;
+    font-size:44px;
+    line-height:1;
+    color:var(--gold-bright);
+    text-shadow:0 2px 8px rgba(0,0,0,.5);
+    margin:0 0 2px;
+  }
+
+  .linea__poster{
+    font-family:'Anton', sans-serif;
+    font-size:56px;
+    line-height:1;
+    letter-spacing:.01em;
+    margin:0;
+    color:#fff;
+    /* doble sombra: capa dorada desplazada da el efecto "relieve" del original */
+    text-shadow:
+      3px 4px 0 var(--gold-deep),
+      3px 4px 0 var(--gold-deep),
+      0 10px 24px rgba(0,0,0,.55);
+  }
+
+  .ganador{
+    margin:20px 0 0;
+    font-weight:600;
+    font-size:19px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:#fff;
+    text-align:center;
+  }
+
+  .ganador-label{
+    margin:22px 0 14px;
+    font-weight:400;
+    font-size:14px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#b9b3a6;
+  }
+
+  /* ============================== TICKET ============================== */
+
+  .ticket{
+    position:relative;
+    display:flex;
+    width:100%;
+    max-width:330px;
+    background:var(--paper);
+    border-radius:14px;
+    box-shadow:
+      0 18px 34px -12px rgba(0,0,0,.55),
+      0 0 0 1px rgba(0,0,0,.04);
+    overflow:hidden;
+  }
+
+  /* textura de papel */
+  .ticket::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='90' height='90'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/></svg>");
+    pointer-events:none;
+  }
+
+  .ordendecompra{
+    flex:0 0 74px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(180deg, var(--gold-mid), #a97f2b);
+    position:relative;
+  }
+
+  .ordendecompra span{
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    font-weight:700;
+    font-size:13px;
+    letter-spacing:.12em;
+    color:#fffaf0;
+    text-align:center;
+    line-height:1.35;
+  }
+
+  /* línea perforada real: círculos recortados con máscara radial repetida */
+  .ticket_divisor{
+    flex:0 0 0;
+    width:0;
+    position:relative;
+    background:
+      repeating-radial-gradient(circle at 50% 0, transparent 0 3px, var(--paper) 3.5px 12px);
+    background-size:100% 14px;
+    margin:0;
+    z-index:1;
+  }
+  .ticket_divisor::before,
+  .ticket_divisor::after{
+    content:"";
+    position:absolute;
+    width:16px; height:16px;
+    border-radius:50%;
+    background:var(--void);
+    left:-8px;
+  }
+  .ticket_divisor::before{ top:-8px; }
+  .ticket_divisor::after{ bottom:-8px; }
+
+  .ticket_cantidad{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding:22px 18px;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .ticket_cantidad .monto{
+    font-family:'Anton', sans-serif;
+    font-size:34px;
+    color:var(--ink);
+    letter-spacing:.01em;
+  }
+
+  .ticket_cantidad .cantidad-tag{
+    margin-top:4px;
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:#8a7f6a;
+  }
+
+  /* barrido de brillo dorado — la firma de la tarjeta */
+  .ticket__brillo{
+    position:absolute;
+    top:-40%; left:-60%;
+    width:60%; height:180%;
+    background:linear-gradient(75deg, transparent, rgba(255,255,255,.55), transparent);
+    transform:rotate(20deg);
+    animation:sheen 3.6s ease-in-out infinite;
+    animation-delay:1s;
+  }
+  @keyframes sheen{
+    0%   { left:-60%; }
+    35%  { left:130%; }
+    100% { left:130%; }
+  }
+
+  .date{
+    margin-top:22px;
+    font-size:12px;
+    letter-spacing:.08em;
+    color:#7d766a;
+  }
+
+  /* ============================== VARIANTE 2 · DESCUENTO % ============================== */
+.class-tag{
+    display: flex;
+    width: 70px;
+    height:auto;
+}
+  .tag{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content: space-around;
+    width:144px;
+    height:144px;
+    border-radius:50%;
+    background:
+      radial-gradient(circle at 32% 28%, var(--gold-bright), var(--gold-mid) 46%, var(--adn-red) 100%);
+    box-shadow:
+      0 20px 40px -14px rgba(226,35,27,.45),
+      0 0 0 6px rgba(255,255,255,.06),
+      0 0 0 8px rgba(199,154,62,.35);
+    
+      
+  }
+
+  .tag::before{
+    content:"";
+    position:absolute;
+    inset:10px;
+    border-radius:50%;
+    border:1.5px dashed rgba(255,255,255,.55);
+  }
+
+  .tag-valor{
+    font-family:'Anton', sans-serif;
+    font-size:46px;
+    color:#fff;
+    line-height:1;
+    text-shadow:0 3px 10px rgba(0,0,0,.35);
+    margin-right: 5px;
+  }
+
+  .tag__off{
+    display: flex;
+    flex-direction: column;
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:.18em;
+    color:#fff;
+    margin-top: 8px;
+   line-height: 20px;
+  }
+
+  .OFF{
+   letter-spacing: 0;
+  }
+  
+  .porcentaje {
+    font-size: 30px;
+  }
+
+  .tag-off{
+    margin-top:18px;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.05em;
+    color:#e6e1d4;
+    text-align:center;
+    max-width:220px;
+    
+  }
+
+
